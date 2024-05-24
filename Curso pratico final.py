@@ -1,18 +1,31 @@
 class Tarea:
+    ''' Clase para representar las tareas.
+
+    - descripcion:   un texto para describir la tarea
+    - completada:    estado de la tarea:  True si está completada
+    '''
     def __init__(self, descripcion, completada=False):
+        # constructor de la tarea
         self.descripcion = descripcion
         self.completada = completada
 
 class GestorTareas:
+    ''' Clase con los métodos para gestionar las tareas
+
+    - tareas:   una lista con todas las tareas creadas
+    '''
     def __init__(self):
+        # constructor del gestor de tareas
         self.tareas = []
 
     def agregar_tarea(self, descripcion):
+        # crea una tarea con la descripción facilitada y la añade a self.tareas
         tarea = Tarea(descripcion)
         self.tareas.append(tarea)
         print("Tarea agregada correctamente.")
 
     def marcar_completada(self, posicion):
+        # cambia el estado de una tarea a completda
         try:
             tarea = self.tareas[posicion]
             tarea.completada = True
@@ -21,18 +34,27 @@ class GestorTareas:
             print("La posición ingresada no es válida.")
 
     def mostrar_tareas(self):
+        # muestra una lista de las tareas creadas, con su posición y descripción
         for i, tarea in enumerate(self.tareas):
             estado = "Completada" if tarea.completada else "Pendiente"
             print(f'{i+1}. {tarea.descripcion} - {estado}')
 
     def eliminar_tarea(self, posicion):
+        # elimina una tarea
         try:
             del self.tareas[posicion]
             print("Tarea eliminada correctamente.")
         except IndexError:
             print("La posición ingresada no es válida.")
 
-# Programa principal
+
+''' Programa principal
+
+Bucle del programa principal que hace las siguientes acciones:
+- muestra las opciones
+- pide una opción al usuario
+- y la ejecuta
+'''
 gestor = GestorTareas()
 
 while True:
@@ -60,4 +82,3 @@ while True:
         break
     else:
         print("Opción no válida. Por favor, seleccione una opción válida.")
-        
